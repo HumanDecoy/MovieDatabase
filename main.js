@@ -37,12 +37,14 @@ const allMovies = (() => {let MovieDatabase = {
 };
 
 return {
-	Getmovies: () => {return MovieDatabase.films;}
+	Getmovies: () => {return MovieDatabase.films;},
+	GetRatings: () => {return MovieDatabase.films[0].ratings;}
 };
 })();
 
 
-
+console.log (allMovies.Getmovies());
+console.log (allMovies.GetRatings());
 
 /*   EXEMPEL PÅ ATT TA UT INFORMATION FRÅN MOVIE DATABASE
 
@@ -53,7 +55,7 @@ const onlyEU = allCountries.Getcountries().filter((x) => {
 
 console.log(onlyEU);
 */
-console.log (allMovies.Getmovies());
+
 
 
 
