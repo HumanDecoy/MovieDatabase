@@ -38,13 +38,13 @@ const allMovies = (() => {let MovieDatabase = {
 
 return {
 	Getmovies: () => {return MovieDatabase.films;},
-	GetRatings: () => {return MovieDatabase.films[0].ratings;}
+	Getratings: () => {return MovieDatabase.films[0].ratings;}
 };
 })();
 
 
 console.log (allMovies.Getmovies());
-console.log (allMovies.GetRatings());
+console.log (allMovies.Getratings());
 
 /*   EXEMPEL PÅ ATT TA UT INFORMATION FRÅN MOVIE DATABASE
 
