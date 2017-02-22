@@ -57,7 +57,7 @@ return {
 	GetTitle: (x) => {return MovieDatabase.films[x].title;},
 	GetYear: (x) => {return MovieDatabase.films[x].year;},
 	Getratings:() => {return MovieDatabase.films;},
-    AddMovie:(movie) => {MovieDatabase.films.push(movie)}
+	AddMovie:(movie) => { MovieDatabase.films.push(movie)}
 
 };
 })();
@@ -67,33 +67,31 @@ console.log (allMovies.Getmovies());
 console.log (allMovies.Getratings());
 
 const postMovies= () =>{
+	test.innerHTML="";
 	for (var i = 0; i < allMovies.Getmovies().length; i++) {
-var filmBlock = 
-`<ul id="">
-${i+1}. -------------------------------------------------
-<li>Title : ${allMovies.GetTitle(i)}</li>
-<li>Release Year : ${allMovies.GetYear(i)} </li>
-<li>Genres : </li>
-<li>Rating:  </li>
-</ul>`;
-test.innerHTML += filmBlock;
-};
+		var filmBlock = 
+		`<ul id=film${i}>
+		${i+1}. -------------------------------------------------
+		<li>Title : ${allMovies.GetTitle(i)}</li>
+		<li>Release Year : ${allMovies.GetYear(i)} </li>
+		<li>Genres : </li>
+		<li>Rating:  </li>
+		</ul>`;
+		test.innerHTML += filmBlock;
+	};
 }
 
 
 testObj = {
-		title: "tettete",
-		year: 1977 ,
-		genres: ["Action", "Adventure"],
-		ratings: [5,7,8,2,4,7,9]
+	title: "tettete",
+	year: 1977 ,
+	genres: ["Action", "Adventure"],
+	ratings: [5,7,8,2,4,7,9]
 }
 
 allMovies.AddMovie(testObj);
 
-
-
 postMovies();
-
 
 
 
