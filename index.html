@@ -16,6 +16,20 @@
 
 <br>
 <br>
+<h2> Add Movie </h2>
+  <form>
+    <input id="title" type="text" placeholder="Title" />
+    <input id="Relasey" type="number" placeholder="Release Year" />
+    <select id="genreInput" name="Genre">
+		<option value="Horror">Horror</option>
+		<option value="Action">Action</option>
+		<option value="Adventure">Adventure</option>
+		<option value="Sci-Fi">Sci-Fi</option>
+		<option value="Commedy">Commedy</option>
+	</select>
+      <input id="Rating" type="number" max="10" min="0" placeholder="Rating" />
+    <input type="button" value="Save Film" onclick="addMovie(genreIn.value)" />
+  </form>
 <br>
 <br>
 <br>
