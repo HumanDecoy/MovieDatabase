@@ -1,18 +1,8 @@
-const genreIn = document.getElementById("genreInput")
-const titleIn = document.getElementById("title")
-const releaseIn = document.getElementById("Relasey")
-const ratingIn = document.getElementById("Rating")
+
 
 var test = document.getElementById("test");
 
-// Funktion för att adda en film : 
-const addMovie = function (title, year, genres, ratings) {
-	this.title = title;
-	this.year = year;
-	this.genres = [genres];
-	this.ratings = [ratings];
 
-}
 
 // Module pattern med ES6 Lägg i moviedatabase i denna ! 
 const allMovies = (() => {let MovieDatabase = {
@@ -53,45 +43,64 @@ const allMovies = (() => {let MovieDatabase = {
 return {
 	// Get movie array function
 	Getmovies: () => {return MovieDatabase.films;},
+	
 	// Get prop of film array
 	GetTitle: (x) => {return MovieDatabase.films[x].title;},
 	GetYear: (x) => {return MovieDatabase.films[x].year;},
 	Getratings:(x) => {return MovieDatabase.films[x].ratings;},
 	GetGenre:(x) => {return MovieDatabase.films[x].genres;},
+
+	//Construct / factory  
+	
+	constructMovie: function (title, year, genres, ratings) {
+		this.title = title;
+		this.year = year;
+		this.genres = [genres];
+		this.ratings = [ratings];
+
+	},
+	
 	//Sort Ratings
-    ratingCal: (arr) => {
-	let length = arr.length
-	console.log(length);
-	let sum = arr;
-	let calc = 0
-	for (var i = 0; i < arr.length; i++) {
-		calc +=sum[i];
-		console.log(sum);
-	}
-	let calcy = calc/length;
-	let fixed = calcy.toFixed(2)
-	return fixed;
-},
+	ratingCal: (arr) => {
+		let length = arr.length
+		let sum = arr;
+		let calc = 0
+		for (var i = 0; i < arr.length; i++) {
+			calc +=sum[i];
+		}
+		let calcy = calc/length;
+		let fixed = calcy.toFixed(2)
+		return fixed;
+	},
 	//Add movie to array
 	AddMovie:(movie) => { MovieDatabase.films.push(movie)},
+	
 	// Posting movies to html function
 	postMovies: () => {
-	test.innerHTML="";
-	for (var i = 0; i < allMovies.Getmovies().length; i++) {
-		var filmBlock = 
-		`<ul id=film${i}>
-		${i+1}. -------------------------------------------------
-		<li>Title : ${allMovies.GetTitle(i)}</li>
-		<li>Release Year : ${allMovies.GetYear(i)} </li>
-		<li>Genres :${allMovies.GetGenre(i)} </li>
-		<li>Rating: ${allMovies.ratingCal(allMovies.Getratings(i))} </li>
-		</ul>`;
-		test.innerHTML += filmBlock;
-	};
-}
+		test.innerHTML="";
+		for (var i = 0; i < allMovies.Getmovies().length; i++) {
+			var filmBlock = 
+			`<ul id=film${i}>
+			${i+1}. -------------------------------------------------
+			<li>Title : ${allMovies.GetTitle(i)}</li>
+			<li>Release Year : ${allMovies.GetYear(i)} </li>
+			<li>Genres :${allMovies.GetGenre(i)} </li>
+			<li>Rating: ${allMovies.ratingCal(allMovies.Getratings(i))} </li>
+			</ul>`;
+			test.innerHTML += filmBlock;
+		};
+	},
+	newMovieFromForm: () => {
+		let genreIn = document.getElementById("genreInput").value	
+		let titleIn = document.getElementById("title").value	
+		let releaseIn = document.getElementById("Relasey").value	
+		let ratingIn = document.getElementById("Rating").value	
 
+		let newfilm = new allMovies.constructMovie(titleIn, releaseIn, genreIn, ratingIn);
+		allMovies.AddMovie(newfilm);
+		allMovies.postMovies();
+	},
 };
-
 })();
 
 
@@ -108,20 +117,6 @@ allMovies.postMovies();
 
 
 // http://jsbin.com/ufanep/2/edit?html,js,output FÖR FORM
-
-
-/*   ratingCal: (arr) => {
-	let length = arr.length
-	console.log(length);
-	let sum = arr;
-	let calc = 0
-	for (var i = 0; i < arr.length; i++) {
-		calc +=sum[i];
-		console.log(sum);
-	}
-	return Math.floor(calc/length);
-}
-*/
 
 
 
