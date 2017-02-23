@@ -9,9 +9,7 @@ body {
 
 }
 .movieDot{
-	margin-top:10px;
-	margin-left:10px;
-	margin-right:10px;
+	margin:10px;
 	background:cornflowerblue;
 	width:280px;
 }

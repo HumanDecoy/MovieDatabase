@@ -60,7 +60,7 @@ return {
 
 	},
 	
-	//Sort Ratings
+	//Sort Ratings (this will become prototype of object later)
 	ratingCal: (arr) => {
 		let length = arr.length
 		let sum = arr;
