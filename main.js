@@ -80,16 +80,19 @@ return {
 		test.innerHTML="";
 		for (var i = 0; i < allMovies.Getmovies().length; i++) {
 			var filmBlock = 
-			`<ul id=film${i}>
-			${i+1}. -------------------------------------------------
+			`<div class="movieDot">
+			<ul id=film${i}>
+			${i+1}. -----------------
 			<li>Title : ${allMovies.GetTitle(i)}</li>
 			<li>Release Year : ${allMovies.GetYear(i)} </li>
 			<li>Genres :${allMovies.GetGenre(i)} </li>
 			<li>Rating: ${allMovies.ratingCal(allMovies.Getratings(i))} </li>
-			</ul>`;
+			</ul></div>`;
 			test.innerHTML += filmBlock;
 		};
 	},
+
+	// Construct new movie from HTML form --> to html and array
 	newMovieFromForm: () => {
 		let genreIn = document.getElementById("genreInput").value	
 		let titleIn = document.getElementById("title").value	
@@ -103,20 +106,11 @@ return {
 };
 })();
 
-
-testObj = {
-	title: "tettete",
-	year: 1977 ,
-	genres: ["Action", "Adventure"],
-	ratings: [5,7,8,2,4,7,9]
-}
-
-//allMovies.AddMovie(testObj);
-
+// init function
 allMovies.postMovies();
 
 
-// http://jsbin.com/ufanep/2/edit?html,js,output FÖR FORM
+
 
 
 
