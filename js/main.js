@@ -1,10 +1,4 @@
-
-
-var test = document.getElementById("test");
-
-
-
-// Module pattern med ES6 Lägg i moviedatabase i denna ! 
+// Module pattern 
 const allMovies = (() => {let MovieDatabase = {
 	films : [
 	{
@@ -69,7 +63,7 @@ return {
 			calc +=sum[i];
 		}
 		let calcy = calc/length;
-		let fixed = calcy.toFixed(2)
+		let fixed = calcy.toFixed(2);
 		return fixed;
 	},
 	//Add movie to array
@@ -77,6 +71,7 @@ return {
 	
 	// Posting movies to html function
 	postMovies: () => {
+		var test = document.getElementById("test");
 		test.innerHTML="";
 		for (var i = 0; i < allMovies.Getmovies().length; i++) {
 			var filmBlock = 
@@ -92,22 +87,73 @@ return {
 		};
 	},
 
+	// Edit movie selector
+
+	editMovieSelect: () => {
+		var editFilm = document.getElementById("selectEle");
+		editFilm.innerHTML="";
+		for (let i = 0; i < allMovies.Getmovies().length; i++) {
+			var anOption = `<option value="${allMovies.Getmovies()[i].title}">${allMovies.Getmovies()[i].title}</option>`;
+			editFilm.innerHTML += anOption;
+		}
+	},
+
+	// Edit Movie Functions
+
+	addRating: () => {
+		let selectedMovie = document.getElementById("selectEle");
+		let newRating = document.getElementById("newRating");
+		let themovie;
+		for (var i = 0; i < allMovies.Getmovies().length; i++) {
+			if (selectedMovie.value === allMovies.Getmovies()[i].title){
+				themovie = allMovies.Getmovies()[i];
+			}
+		}
+
+		themovie.ratings.push(parseFloat(newRating.value));
+		allMovies.postMovies();
+	},
+	addGenre: () => {
+		let addGenre = document.getElementById("newgenreInput").value;
+			for (var i = 0; i < allMovies.Getmovies().length; i++) {
+			if (selectedMovie.value === allMovies.Getmovies()[i].title){
+				themovie = allMovies.Getmovies()[i];
+			}
+		}
+		
+
+	},
+	removeGenre: () => {
+		let removeGenre = document.getElementById("removeGenre").value;
+			for (var i = 0; i < allMovies.Getmovies().length; i++) {
+			if (selectedMovie.value === allMovies.Getmovies()[i].title){
+				themovie = allMovies.Getmovies()[i];
+			}
+
+		}
+		
+
+	},
+
 	// Construct new movie from HTML form --> to html and array
 	newMovieFromForm: () => {
-		let genreIn = document.getElementById("genreInput").value	
-		let titleIn = document.getElementById("title").value	
-		let releaseIn = document.getElementById("Relasey").value	
-		let ratingIn = document.getElementById("Rating").value	
+		let genreIn = document.getElementById("genreInput").value;
+		let titleIn = document.getElementById("title").value;
+		let releaseIn = document.getElementById("Relasey").value;
+		let ratingIn = document.getElementById("Rating").value;
 
-		let newfilm = new allMovies.constructMovie(titleIn, releaseIn, genreIn, ratingIn);
+		let newfilm = new allMovies.constructMovie(titleIn, releaseIn, genreIn, parseFloat(ratingIn));
 		allMovies.AddMovie(newfilm);
 		allMovies.postMovies();
+		allMovies.editMovieSelect();
 	},
 };
 })();
 
-// init function
+
+// init functions
 allMovies.postMovies();
+allMovies.editMovieSelect();
 
 
 

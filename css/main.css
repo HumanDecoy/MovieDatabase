@@ -13,3 +13,12 @@ body {
 	background:cornflowerblue;
 	width:280px;
 }
+
+#editDiv{
+	border:solid 1px black;
+	width:40rem;
+}
+
+#newRating{
+	width:100px;
+}

@@ -19,7 +19,7 @@
 			<option value="Action">Action</option>
 			<option value="Adventure">Adventure</option>
 			<option value="Sci-Fi">Sci-Fi</option>
-			<option value="Commedy">Commedy</option>
+			<option value="Comedy">Comedy</option>
 		</select>
 		<input id="Rating" type="number" max="10" min="0" placeholder="Rating" />
 		<input type="button" value="Save Film" onclick="allMovies.newMovieFromForm()" />
@@ -27,8 +27,35 @@
 
 	<h2>Filmer:</h2>
 	<h3> Sortera : </h3>
-
 	<div id="test"> </div>
+	<h2> Edit movie </h2>
+
+	<div id="editDiv">
+		<select id="selectEle" name="Select Movie">
+		</select><br>
+		<p> Add rating 1-10 : </p><input id="newRating" type="number" max="10" min="0" placeholder="New Rating" />
+		<input type="button" value="Save Film" onclick="allMovies.addRating()" />
+		<p> Add genre: </p>
+		<select id="newgenreInput" name="Genre">
+			<option value="Horror">Horror</option>
+			<option value="Action">Action</option>
+			<option value="Adventure">Adventure</option>
+			<option value="Sci-Fi">Sci-Fi</option>
+			<option value="Comedy">Comedy</option>
+		</select>
+		<input type="button" value="Save Film" onclick="" />
+		<p> Remove Genre : </p>
+		<select id="removeGenre" name="Genre">
+			<option value="Horror">Horror</option>
+			<option value="Action">Action</option>
+			<option value="Adventure">Adventure</option>
+			<option value="Sci-Fi">Sci-Fi</option>
+			<option value="Comedy">Comedy</option>
+		</select>
+		<input type="button" value="Save Film" onclick="" />
+
+	</div>
+
 
 	<p>---// Skapa formulär för ny film//---</p>
 	<p>---//Visa alla filmer i lista//---</p>
