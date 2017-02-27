@@ -104,7 +104,8 @@ return {
 		let selectedMovie = document.getElementById("selectEle");
 		let newRating = document.getElementById("newRating");
 		let themovie;
-		for (var i = 0; i < allMovies.Getmovies().length; i++) {
+
+		for (let i = 0; i < allMovies.Getmovies().length; i++) {
 			if (selectedMovie.value === allMovies.Getmovies()[i].title){
 				themovie = allMovies.Getmovies()[i];
 			}
@@ -113,22 +114,44 @@ return {
 		themovie.ratings.push(parseFloat(newRating.value));
 		allMovies.postMovies();
 	},
-	addGenre: () => {
+	addnewGenre: () => {
+		let selectedMovie = document.getElementById("selectEle");
 		let addGenre = document.getElementById("newgenreInput").value;
-			for (var i = 0; i < allMovies.Getmovies().length; i++) {
+		let themovie;
+
+		for (let i = 0; i < allMovies.Getmovies().length; i++) {
+			if (selectedMovie.value === allMovies.Getmovies()[i].title){
+				themovie = allMovies.Getmovies()[i];
+			}
+
+		}
+		
+		for (let i = 0; i < themovie.genres.length; i++) {
+			if (addGenre === themovie.genres[i]){
+				return;
+			}
+			
+		}
+		themovie.genres.push(addGenre);
+		allMovies.postMovies();
+
+	},
+	removeGenre: () => {
+		let selectedMovie = document.getElementById("selectEle");
+		let removeGenre = document.getElementById("removeGenre").value;
+		let themovie;
+
+		for (let i = 0; i < allMovies.Getmovies().length; i++) {
 			if (selectedMovie.value === allMovies.Getmovies()[i].title){
 				themovie = allMovies.Getmovies()[i];
 			}
 		}
-		
+		for (let x = 0; x < themovie.genres.length; x++) {
+			if (removeGenre === themovie.genres[x]){
+				themovie.genres.splice(x,1);
 
-	},
-	removeGenre: () => {
-		let removeGenre = document.getElementById("removeGenre").value;
-			for (var i = 0; i < allMovies.Getmovies().length; i++) {
-			if (selectedMovie.value === allMovies.Getmovies()[i].title){
-				themovie = allMovies.Getmovies()[i];
 			}
+			allMovies.postMovies();
 
 		}
 		
