@@ -56,7 +56,7 @@ return {
 	
 	//Sort Ratings (this will become prototype of object later)
 	ratingCal: (arr) => {
-		let length = arr.length
+		let length = arr.length;
 		let sum = arr;
 		let calc = 0
 		for (var i = 0; i < arr.length; i++) {
@@ -110,10 +110,16 @@ return {
 				themovie = allMovies.Getmovies()[i];
 			}
 		}
-
+		if(newRating.value > 10){
+			newRating.value = 10;
+		}
+		if(newRating.value < 0){
+			newRating.value = 0;
+		}
 		themovie.ratings.push(parseFloat(newRating.value));
 		allMovies.postMovies();
 	},
+
 	addnewGenre: () => {
 		let selectedMovie = document.getElementById("selectEle");
 		let addGenre = document.getElementById("newgenreInput").value;
@@ -136,6 +142,7 @@ return {
 		allMovies.postMovies();
 
 	},
+
 	removeGenre: () => {
 		let selectedMovie = document.getElementById("selectEle");
 		let removeGenre = document.getElementById("removeGenre").value;
@@ -164,6 +171,12 @@ return {
 		let titleIn = document.getElementById("title").value;
 		let releaseIn = document.getElementById("Relasey").value;
 		let ratingIn = document.getElementById("Rating").value;
+		if (ratingIn > 10){
+			ratingIn = 10;
+		}
+		if(ratingIn < 0){
+			ratingIn = 0;
+		}
 
 		let newfilm = new allMovies.constructMovie(titleIn, releaseIn, genreIn, parseFloat(ratingIn));
 		allMovies.AddMovie(newfilm);
