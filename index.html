@@ -27,21 +27,16 @@
 
 	<h2>Filmer:</h2>
 	<h3> Sortera : </h3>
-	<input id="" type="number" placeholder="ReleaseYear" />	
+	<input id="yearSearch" type="number" placeholder="ReleaseYear" onkeyup="allMovies.sortYear()" />	
 	<input type="button" value="Highest Rating" onclick="" />
 	<input type="button" value="Lowest Rating" onclick="" />
-	<select id="sortbygenre" name="Genre">
-		<option value="Select">Select Genre</option>
-		<option value="Horror">Horror</option>
-		<option value="Action">Action</option>
-		<option value="Adventure">Adventure</option>
-		<option value="Sci-Fi">Sci-Fi</option>
-		<option value="Comedy">Comedy</option>
-	</select>
+	<input type="text" value="" placeholder="Genre" onkeydown="" />
+	<input type="button" value="Show All Movies" onclick="allMovies.postMovies()" />
+
 
 	<div id="test"> </div>
 	
-
+<div class="editSection">
 	<h2> Edit movie </h2>
 
 	<div id="editDiv">
@@ -69,7 +64,7 @@
 		<input type="button" value="Save Film" onclick="allMovies.removeGenre()" />
 
 	</div>
-
+</div>
 	<p>---//Sortera filmer efter kriterier så som : högst rating, sämst rating, genre//---</p>
 
 

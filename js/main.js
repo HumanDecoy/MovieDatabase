@@ -9,25 +9,25 @@ const allMovies = (() => {let MovieDatabase = {
 	},
 	{
 		title:"Waterworld",
-		year:1995 ,
+		year:1995,
 		genres:["Action"],
 		ratings:[8,7,6,9,8,7,10]
 	},
 	{
 		title:"Stargate",
-		year:1994 ,
+		year:1994,
 		genres:["Action","Adventure","Sci-Fi"],
 		ratings:[10,10,10,9,8,10,8]
 	},
 	{
 		title:"Arrival",
-		year:2016 ,
+		year:2016,
 		genres:["Action","Sci-Fi"],
 		ratings:[5,7,3,7,9]
 	},
 	{
 		title:"The Brothers Lionheart",
-		year:1977 ,
+		year:1977,
 		genres:["Action","Adventure"],
 		ratings:[5,7,8,2,4,7,9]
 	},
@@ -64,6 +64,11 @@ return {
 	//Add movie to array
 	AddMovie:(movie) => { MovieDatabase.films.push(movie);
 	},
+
+
+// FIXA POST MOVIES SÅ ATT DEN ANVÄNDS SOM SEARCH RESULTS
+
+
 	// Posting movies to html function
 	postMovies: () => {
 		var test = document.getElementById("test");
@@ -80,6 +85,44 @@ return {
 			</ul></div>`;
 			test.innerHTML += filmBlock;
 		}
+	},
+	//Sort After Ratings
+	ratingSort: () => {
+	},
+	//Sort after Year
+	sortYear: () => {
+		let yearS = document.getElementById("yearSearch").value;
+		yearS= parseFloat(yearS);
+		let sortedYear =[];
+		for (let i = 0; i < allMovies.Getmovies().length; i++) {
+				if(allMovies.Getmovies()[i].year === yearS){
+					sortedYear.push(allMovies.Getmovies()[i]);
+				
+
+				}	
+			}
+			
+			allMovies.SearchResults(sortedYear);
+	},
+	SearchResults: (films) => {
+		var test = document.getElementById("test");
+		test.innerHTML="";
+		for (var i = 0; i < films.length; i++) {
+			var filmBlock = 
+			`<div class="movieDot">
+			<ul id=film${i}>
+			${i+1}. -----------------
+			<li>Title : ${films[i].title}</li>
+			<li>Release Year : ${films[i].year} </li>
+			<li>Genres :${films[i].genres} </li>
+			<li>Rating: ${allMovies.ratingCal(films[i].ratings)} </li>
+			</ul></div>`;
+			test.innerHTML += filmBlock;
+		}
+	},
+	//Genre Sort
+	genreSort: () => {
+
 	},
 	// Edit movie selector
 	editMovieSelect: () => {
@@ -162,7 +205,8 @@ return {
 		if(ratingIn < 0){
 			ratingIn = 0;
 		}
-
+	
+		releaseIn = parseFloat(releaseIn);
 		let newfilm = new allMovies.constructMovie(titleIn, releaseIn, genreIn, parseFloat(ratingIn));
 		allMovies.AddMovie(newfilm);
 		allMovies.postMovies();
