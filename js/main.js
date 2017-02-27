@@ -122,7 +122,6 @@ return {
 	},
 	//Genre Sort
 	genreSort: () => {
-
 	},
 	// Edit movie selector
 	editMovieSelect: () => {
@@ -225,8 +224,8 @@ allMovies.editMovieSelect();
 
 
 
-
-
+//FÖR ATT KOPIERA EN ARRAY :::
+// var k = movies.slice()
 
 
 //------------------------------------------------------------------------
