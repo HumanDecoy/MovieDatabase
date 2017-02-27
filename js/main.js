@@ -37,23 +37,18 @@ const allMovies = (() => {let MovieDatabase = {
 return {
 	// Get movie array function
 	Getmovies: () => {return MovieDatabase.films;},
-	
 	// Get prop of film array
 	GetTitle: (x) => {return MovieDatabase.films[x].title;},
 	GetYear: (x) => {return MovieDatabase.films[x].year;},
 	Getratings:(x) => {return MovieDatabase.films[x].ratings;},
 	GetGenre:(x) => {return MovieDatabase.films[x].genres;},
-
 	//Construct / factory  
-	
 	constructMovie: function (title, year, genres, ratings) {
 		this.title = title;
 		this.year = year;
 		this.genres = [genres];
 		this.ratings = [ratings];
-
 	},
-	
 	//Sort Ratings (this will become prototype of object later)
 	ratingCal: (arr) => {
 		let length = arr.length;
@@ -67,8 +62,8 @@ return {
 		return fixed;
 	},
 	//Add movie to array
-	AddMovie:(movie) => { MovieDatabase.films.push(movie)},
-	
+	AddMovie:(movie) => { MovieDatabase.films.push(movie);
+	},
 	// Posting movies to html function
 	postMovies: () => {
 		var test = document.getElementById("test");
@@ -84,11 +79,9 @@ return {
 			<li>Rating: ${allMovies.ratingCal(allMovies.Getratings(i))} </li>
 			</ul></div>`;
 			test.innerHTML += filmBlock;
-		};
+		}
 	},
-
 	// Edit movie selector
-
 	editMovieSelect: () => {
 		var editFilm = document.getElementById("selectEle");
 		editFilm.innerHTML="";
@@ -97,9 +90,7 @@ return {
 			editFilm.innerHTML += anOption;
 		}
 	},
-
 	// Edit Movie Functions
-
 	addRating: () => {
 		let selectedMovie = document.getElementById("selectEle");
 		let newRating = document.getElementById("newRating");
@@ -119,7 +110,6 @@ return {
 		themovie.ratings.push(parseFloat(newRating.value));
 		allMovies.postMovies();
 	},
-
 	addnewGenre: () => {
 		let selectedMovie = document.getElementById("selectEle");
 		let addGenre = document.getElementById("newgenreInput").value;
@@ -140,9 +130,7 @@ return {
 		}
 		themovie.genres.push(addGenre);
 		allMovies.postMovies();
-
 	},
-
 	removeGenre: () => {
 		let selectedMovie = document.getElementById("selectEle");
 		let removeGenre = document.getElementById("removeGenre").value;
@@ -161,10 +149,7 @@ return {
 			allMovies.postMovies();
 
 		}
-		
-
 	},
-
 	// Construct new movie from HTML form --> to html and array
 	newMovieFromForm: () => {
 		let genreIn = document.getElementById("genreInput").value;
