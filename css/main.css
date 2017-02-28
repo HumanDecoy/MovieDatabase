@@ -4,8 +4,9 @@ body {
 #test{
 	display:flex;
 	flex-direction: row;
-	width:100%;
 	flex-wrap:wrap;
+	margin:10px;
+	border:solid 2px black;
 
 }
 .movieDot{
