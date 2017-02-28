@@ -29,8 +29,8 @@
 	<h3> Sortera : </h3>
 	<input id="yearSearch" type="number" placeholder="ReleaseYear" onkeyup="allMovies.sortYear()" />	
 	<input type="button" value="Highest Rating" onclick="allMovies.sortByHighRating()" />
-	<input type="button" value="Lowest Rating" onclick="allMovies. sortByLowRating()" />
-	<input type="text" value="" placeholder="Genre" onkeydown="" />
+	<input type="button" value="Lowest Rating" onclick="allMovies.sortByLowRating()" />
+	<input id="genreSearch" type="text" value="" placeholder="Genre" onkeyup="allMovies.genreSort()" />
 	<input type="button" value="Show All Movies" onclick="allMovies.postMovies()" />
 
 
@@ -65,8 +65,6 @@
 
 	</div>
 </div>
-	<p>---//Sortera filmer efter kriterier så som : högst rating, sämst rating, genre//---</p>
-
 
 	<script src="js/main.js"></script>
 </body>

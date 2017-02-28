@@ -31,6 +31,84 @@ const allMovies = (() => {let MovieDatabase = {
 		genres:["Action","Adventure"],
 		ratings:[5,7,8,2,4,7,9]
 	},
+	{
+		title: "Blade Runner",
+		year: 1982,
+		genres: ["Sci-Fi", "Thriller"],
+		ratings: [9,8,9,7,9,8,9,8,9]
+	},
+
+	{
+		title: "The Big Lebowski",
+		year: 1998,
+		genres: ["Comedy", "Crime",],
+		ratings: [9,9,9,9,8,8,7,6,8,5]
+	},
+
+	{
+		title: "Pulp Fiction",
+		year: 1994,
+		genres: ["Crime",],
+		ratings: [9,5,7,9,8,8,7,6,8,5]
+	},
+
+	{
+		title: "Fight Club",
+		year: 1999,
+		genres: ["Action"],
+		ratings: [9,9,7,8,6,7,8,8,7,6]
+	},
+	{
+		title: 'The Exorcist',
+		year: 1973,
+		genres: ['Horror',],
+		ratings:[7,8,8,9]
+	},
+	{
+		title: 'Kill Bill vol.2',
+		year: 2005,
+		genres: ['Action',],
+		ratings:[7,8,7,8]
+	},
+	{
+		title: 'Bond',
+		year:1957,
+		genres: ['Action',],
+		ratings: [6,4,8,9]
+	},
+	{
+		title: 'Pulp Fiction',
+		year: 1995,
+		genres: ['Action',],
+		ratings: [7,8,8,9]
+	},
+	{
+		title:'Kill Bill vol.1',
+		year:2003,
+		genres:['Action',],
+		ratings:[8,9,9]
+	},
+	{
+		title:'Django Unchained',
+		year:2012,
+		genres:['Action'],
+		ratings:[7,8,9]
+
+	},
+	{
+		title:'Inglourious Basterds',
+		year:2009,
+		genres:['Action',],
+		ratings:[8,7,9]
+	},
+	{
+		title:'Sharknado',
+		year:2013,
+		genres:['Horror','Sci-Fi'],
+		ratings:[3,2,2]
+	},
+
+	
 	]
 };
 
@@ -127,7 +205,6 @@ return {
 
 			}	
 		}
-
 		allMovies.SearchResults(sortedYear);
 	},
 	//Tar in en array och postar resultatet i html med template litteralls
@@ -149,7 +226,18 @@ return {
 	},
 	//Genre Sort
 	genreSort: () => {
-		
+		let genreS = document.getElementById("genreSearch").value;
+		let sortedGenre =[];
+		for (let i = 0; i < allMovies.Getmovies().length; i++) {
+			for (var x = 0; x < allMovies.Getmovies()[i].genres.length; x++) {
+				if(allMovies.Getmovies()[i].genres[x] === genreS){
+					sortedGenre.push(allMovies.Getmovies()[i]);
+
+				}
+			}	
+		}
+
+		allMovies.SearchResults(sortedGenre);
 	},
 	// Edit movie selector
 	editMovieSelect: () => {
