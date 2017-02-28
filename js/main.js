@@ -42,14 +42,14 @@ return {
 	GetYear: (x) => {return MovieDatabase.films[x].year;},
 	Getratings:(x) => {return MovieDatabase.films[x].ratings;},
 	GetGenre:(x) => {return MovieDatabase.films[x].genres;},
-	//Construct / factory  
+	//Constructor
 	constructMovie: function (title, year, genres, ratings) {
 		this.title = title;
 		this.year = year;
 		this.genres = [genres];
 		this.ratings = [ratings];
 	},
-	
+	//Räknar ut medelvärdet
 	ratingCal: (arr) => {
 		let length = arr.length;
 		let sum = arr;
@@ -64,8 +64,7 @@ return {
 	//Add movie to array
 	AddMovie:(movie) => { MovieDatabase.films.push(movie);
 	},
-// FIXA POST MOVIES SÅ ATT DEN ANVÄNDS SOM SEARCH RESULTS
-	// Posting movies to html function
+	// Postar filmer i html med template litteralls från orginal-arrayen
 	postMovies: () => {
 		var test = document.getElementById("test");
 		test.innerHTML="";
@@ -84,11 +83,14 @@ return {
 	},
 	//Sort After Ratings
 	sortByRating: (sortByHigh) => {
+		let sortedArr = [];
 
+		for (let i = 0; i < MovieDatabase.films.length; i++) {
+			sortedArr.push(MovieDatabase.films[i]);
+		}
 		let compareNumbers = (a, b) =>   {
-			var arr1 = parseFloat(allMovies.ratingCal(a.ratings));
-			var arr2 = parseFloat(allMovies.ratingCal(b.ratings));
-			var sortedArr = [];
+			let arr1 = parseFloat(allMovies.ratingCal(a.ratings));
+			let arr2 = parseFloat(allMovies.ratingCal(b.ratings));
 			if(arr1 < arr2) {
 				return - 1;
 			}
@@ -98,11 +100,10 @@ return {
 			return 0;
 		};
 		if (sortByHigh) {
-
-			sortedArr = MovieDatabase.films.sort(compareNumbers).reverse();
+			sortedArr.sort(compareNumbers).reverse();
 		}
 		else {
-			sortedArr = MovieDatabase.films.sort(compareNumbers);
+			sortedArr.sort(compareNumbers);
 		}
 		return allMovies.SearchResults(sortedArr);  
 	},
@@ -129,6 +130,7 @@ return {
 
 		allMovies.SearchResults(sortedYear);
 	},
+	//Tar in en array och postar resultatet i html med template litteralls
 	SearchResults: (films) => {
 		var test = document.getElementById("test");
 		test.innerHTML="";
@@ -147,6 +149,7 @@ return {
 	},
 	//Genre Sort
 	genreSort: () => {
+		
 	},
 	// Edit movie selector
 	editMovieSelect: () => {
