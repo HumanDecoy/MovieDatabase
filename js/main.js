@@ -43,7 +43,7 @@ const allMovies = (() => {let MovieDatabase = {
 	{
 		title: "The Big Lebowski",
 		year: 1998,
-		genres: ["Comedy", "Crime",],
+		genres: ["Comedy",],
 		ratings: [9,9,9,9,8,8,7,6,8,5]
 	},
 
