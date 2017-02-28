@@ -49,7 +49,7 @@ return {
 		this.genres = [genres];
 		this.ratings = [ratings];
 	},
-	//Sort Ratings (this will become prototype of object later)
+	
 	ratingCal: (arr) => {
 		let length = arr.length;
 		let sum = arr;
@@ -64,11 +64,7 @@ return {
 	//Add movie to array
 	AddMovie:(movie) => { MovieDatabase.films.push(movie);
 	},
-
-
 // FIXA POST MOVIES SÅ ATT DEN ANVÄNDS SOM SEARCH RESULTS
-
-
 	// Posting movies to html function
 	postMovies: () => {
 		var test = document.getElementById("test");
@@ -87,22 +83,51 @@ return {
 		}
 	},
 	//Sort After Ratings
-	ratingSort: () => {
+	sortByRating: (sortByHigh) => {
+
+		let compareNumbers = (a, b) =>   {
+			var arr1 = parseFloat(allMovies.ratingCal(a.ratings));
+			var arr2 = parseFloat(allMovies.ratingCal(b.ratings));
+			var sortedArr = [];
+			if(arr1 < arr2) {
+				return - 1;
+			}
+			if (arr1 > arr2) {
+				return 1;
+			}
+			return 0;
+		};
+		if (sortByHigh) {
+
+			sortedArr = MovieDatabase.films.sort(compareNumbers).reverse();
+		}
+		else {
+			sortedArr = MovieDatabase.films.sort(compareNumbers);
+		}
+		return allMovies.SearchResults(sortedArr);  
 	},
+	 //Function that checks if you chosen to sort by Highest rating or not.
+	 sortByHighRating: () => {
+	 	allMovies.sortByRating(true);
+	 },
+     //Function that checks if you chosen to sort by Lowest rating or not.
+     sortByLowRating: () => {
+     	allMovies.sortByRating(false);
+     },
 	//Sort after Year
 	sortYear: () => {
 		let yearS = document.getElementById("yearSearch").value;
 		yearS= parseFloat(yearS);
 		let sortedYear =[];
 		for (let i = 0; i < allMovies.Getmovies().length; i++) {
-				if(allMovies.Getmovies()[i].year === yearS){
-					sortedYear.push(allMovies.Getmovies()[i]);
+			if(allMovies.Getmovies()[i].year === yearS){
+				sortedYear.push(allMovies.Getmovies()[i]);
 				
 
-				}	
-			}
-			
-			allMovies.SearchResults(sortedYear);
+			}	
+		}
+
+		allMovies.SearchResults(sortedYear);
 	},
 	SearchResults: (films) => {
 		var test = document.getElementById("test");
@@ -204,7 +229,7 @@ return {
 		if(ratingIn < 0){
 			ratingIn = 0;
 		}
-	
+
 		releaseIn = parseFloat(releaseIn);
 		let newfilm = new allMovies.constructMovie(titleIn, releaseIn, genreIn, parseFloat(ratingIn));
 		allMovies.AddMovie(newfilm);
@@ -229,35 +254,6 @@ allMovies.editMovieSelect();
 
 
 //------------------------------------------------------------------------
-
-/*   EXEMPEL PÅ ATT TA UT INFORMATION FRÅN MOVIE DATABASE
-
-const onlyEU = allCountries.Getcountries().filter((x) => {
-    if (x.continent === "Europe"){
-        return x;}
-    });
-
-console.log(onlyEU);
-*/
-
-
-/* AVAKTA MED DENNA
-const onlyHorror = allMovies.Getmovies().filter((x) => {
-	
-
-	if (x.genres === "Action"){
-		return x;}
-});
-console.log(onlyHorror);
-*/
-
-
-/*
-const onlyEU = allCountries.Getcountries().filter((x) => {
-    if (x.continent === "Europe"){
-        return x;}
-    });
-    */
 
 
 
