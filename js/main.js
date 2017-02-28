@@ -1,4 +1,6 @@
-// Module pattern 
+// Module pattern ; Använde mig av module pattern då det är smididgt att
+// binda funktionerna till modulen, inga variabler eller funktioner 
+// ligger då i globala scopet och de blir bundna till modulen.
 const allMovies = (() => {let MovieDatabase = {
 	films : [
 	{
@@ -108,7 +110,7 @@ const allMovies = (() => {let MovieDatabase = {
 		ratings:[3,2,2]
 	},
 
-	
+
 	]
 };
 
@@ -120,7 +122,11 @@ return {
 	GetYear: (x) => {return MovieDatabase.films[x].year;},
 	Getratings:(x) => {return MovieDatabase.films[x].ratings;},
 	GetGenre:(x) => {return MovieDatabase.films[x].genres;},
-	//Constructor
+	//Constructor, skapar alla objekt och har då samma prototyper, 
+	// valde att använda en vanlig construktor då jag inte hade något 
+	//behov av att binda några prototyper specefikt till objekten
+	//hade jag behövt det så hade jag istället använt mig av ett 
+	//factory pattern.
 	constructMovie: function (title, year, genres, ratings) {
 		this.title = title;
 		this.year = year;
@@ -334,17 +340,3 @@ return {
 // init functions
 allMovies.postMovies();
 allMovies.editMovieSelect();
-
-
-
-
-
-
-//FÖR ATT KOPIERA EN ARRAY :::
-// var k = movies.slice()
-
-
-//------------------------------------------------------------------------
-
-
-
