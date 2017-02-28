@@ -145,7 +145,7 @@ return {
 		let fixed = calcy.toFixed(2);
 		return fixed;
 	},
-	//Add movie to array
+	//Lägger till film i array
 	AddMovie:(movie) => { MovieDatabase.films.push(movie);
 	},
 	// Postar filmer i html med template litteralls från orginal-arrayen
@@ -165,7 +165,7 @@ return {
 			test.innerHTML += filmBlock;
 		}
 	},
-	//Sort After Ratings
+	//Sorterar efter ratings
 	sortByRating: (sortByHigh) => {
 		let sortedArr = [];
 
@@ -191,15 +191,15 @@ return {
 		}
 		return allMovies.SearchResults(sortedArr);  
 	},
-	 //Function that checks if you chosen to sort by Highest rating or not.
+	 //Funktion som sorterar efter Högst rating.
 	 sortByHighRating: () => {
 	 	allMovies.sortByRating(true);
 	 },
-     //Function that checks if you chosen to sort by Lowest rating or not.
+     //Funktion som sorterar efter Lägst rating
      sortByLowRating: () => {
      	allMovies.sortByRating(false);
      },
-	//Sort after Year
+	//Sorterar efter release år
 	sortYear: () => {
 		let yearS = document.getElementById("yearSearch").value;
 		yearS= parseFloat(yearS);
@@ -230,7 +230,7 @@ return {
 			test.innerHTML += filmBlock;
 		}
 	},
-	//Genre Sort
+	//Genre Sortering
 	genreSort: () => {
 		let genreS = document.getElementById("genreSearch").value;
 		let sortedGenre =[];
@@ -245,7 +245,7 @@ return {
 
 		allMovies.SearchResults(sortedGenre);
 	},
-	// Edit movie selector
+	// Lägger till namn i select elementet
 	editMovieSelect: () => {
 		var editFilm = document.getElementById("selectEle");
 		editFilm.innerHTML="";
@@ -254,7 +254,7 @@ return {
 			editFilm.innerHTML += anOption;
 		}
 	},
-	// Edit Movie Functions
+	//Olika funktioner för att editera filmerna i arrayen
 	addRating: () => {
 		let selectedMovie = document.getElementById("selectEle");
 		let newRating = document.getElementById("newRating");
@@ -314,7 +314,7 @@ return {
 
 		}
 	},
-	// Construct new movie from HTML form --> to html and array
+	// Skapar nya filmer i arrayen från HTML form/inputs
 	newMovieFromForm: () => {
 		let genreIn = document.getElementById("genreInput").value;
 		let titleIn = document.getElementById("title").value;
