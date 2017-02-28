@@ -137,7 +137,7 @@ return {
 	ratingCal: (arr) => {
 		let length = arr.length;
 		let sum = arr;
-		let calc = 0
+		let calc = 0;
 		for (var i = 0; i < arr.length; i++) {
 			calc +=sum[i];
 		}
