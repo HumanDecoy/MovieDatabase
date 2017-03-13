@@ -22,16 +22,16 @@
 			<option value="Comedy">Comedy</option>
 		</select>
 		<input id="Rating" type="number" max="10" min="0" placeholder="Rating" />
-		<input type="button" value="Save Film" onclick="allMovies.newMovieFromForm()" />
+		<input id="newmoviedatabase" type="button" value="Save Film"  />
 	</form>
 
 	<h2>Filmer:</h2>
 	<h3> Sortera : </h3>
 	<input id="yearSearch" type="number" placeholder="ReleaseYear" onkeyup="allMovies.sortYear()" />	
-	<input type="button" value="Highest Rating" onclick="allMovies.sortByHighRating()" />
-	<input type="button" value="Lowest Rating" onclick="allMovies.sortByLowRating()" />
+	<input id="ratingSearch" type="button" value="Highest Rating" />
+	<input id="ratingLow" type="button" value="Lowest Rating" />
 	<input id="genreSearch" type="text" value="" placeholder="Genre" onkeyup="allMovies.genreSort()" />
-	<input type="button" value="Show All Movies" onclick="allMovies.postMovies()" />
+	<input id="showMovies" type="button" value="Show All Movies"  />
 
 
 	<div id="test"> </div>
@@ -43,7 +43,7 @@
 		<select id="selectEle" name="Select Movie">
 		</select><br>
 		<p> Add rating 1-10 : </p><input id="newRating" type="number" max="10" min="0" placeholder="New Rating" />
-		<input type="button" value="Save Film" onclick="allMovies.addRating()" />
+		<input id="newRatingButton" type="button" value="Save Film" />
 		<p> Add genre: </p>
 		<select id="newgenreInput" name="Genre">
 			<option value="Horror">Horror</option>
@@ -52,7 +52,7 @@
 			<option value="Sci-Fi">Sci-Fi</option>
 			<option value="Comedy">Comedy</option>
 		</select>
-		<input type="button" value="Save Film" onclick="allMovies.addnewGenre()" />
+		<input id="newGenreButton" type="button" value="Save Film" />
 		<p> Remove Genre : </p>
 		<select id="removeGenre" name="Genre">
 			<option value="Horror">Horror</option>
@@ -61,7 +61,7 @@
 			<option value="Sci-Fi">Sci-Fi</option>
 			<option value="Comedy">Comedy</option>
 		</select>
-		<input type="button" value="Save Film" onclick="allMovies.removeGenre()" />
+		<input id="removeGenreButton" type="button" value="Save Film" />
 
 	</div>
 </div>

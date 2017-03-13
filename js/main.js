@@ -116,12 +116,12 @@ const allMovies = (() => {let MovieDatabase = {
 
 return {
 	// Get movie array function
-	Getmovies: () => {return MovieDatabase.films;},
+	getMovies: () => {return MovieDatabase.films;},
 	// Get prop of film array
-	GetTitle: (x) => {return MovieDatabase.films[x].title;},
-	GetYear: (x) => {return MovieDatabase.films[x].year;},
-	Getratings:(x) => {return MovieDatabase.films[x].ratings;},
-	GetGenre:(x) => {return MovieDatabase.films[x].genres;},
+	getTitle: (x) => {return MovieDatabase.films[x].title;},
+	getYear: (x) => {return MovieDatabase.films[x].year;},
+	getRatings:(x) => {return MovieDatabase.films[x].ratings;},
+	getGenre:(x) => {return MovieDatabase.films[x].genres;},
 	//Constructor, skapar alla objekt och har då samma prototyper, 
 	// valde att använda en vanlig construktor då jag inte hade något 
 	//behov av att binda några prototyper specefikt till objekten
@@ -142,25 +142,26 @@ return {
 			calc +=sum[i];
 		}
 		let calcy = calc/length;
+		// toFixed ser till att endast ta med 2 decimaler
 		let fixed = calcy.toFixed(2);
 		return fixed;
 	},
 	//Lägger till film i array
-	AddMovie:(movie) => { MovieDatabase.films.push(movie);
+	addMovie:(movie) => { MovieDatabase.films.push(movie);
 	},
 	// Postar filmer i html med template litteralls från orginal-arrayen
 	postMovies: () => {
 		var test = document.getElementById("test");
 		test.innerHTML="";
-		for (var i = 0; i < allMovies.Getmovies().length; i++) {
+		for (var i = 0; i < allMovies.getMovies().length; i++) {
 			var filmBlock = 
 			`<div class="movieDot">
 			<ul id=film${i}>
 			${i+1}. -----------------
-			<li>Title : ${allMovies.GetTitle(i)}</li>
-			<li>Release Year : ${allMovies.GetYear(i)} </li>
-			<li>Genres :${allMovies.GetGenre(i)} </li>
-			<li>Rating: ${allMovies.ratingCal(allMovies.Getratings(i))} </li>
+			<li>Title : ${allMovies.getTitle(i)}</li>
+			<li>Release Year : ${allMovies.getYear(i)} </li>
+			<li>Genres :${allMovies.getGenre(i)} </li>
+			<li>Rating: ${allMovies.ratingCal(allMovies.getRatings(i))} </li>
 			</ul></div>`;
 			test.innerHTML += filmBlock;
 		}
@@ -168,10 +169,11 @@ return {
 	//Sorterar efter ratings
 	sortByRating: (sortByHigh) => {
 		let sortedArr = [];
-
+		// Tar ut orginal arrayen och lägger in i nya
 		for (let i = 0; i < MovieDatabase.films.length; i++) {
 			sortedArr.push(MovieDatabase.films[i]);
 		}
+		// Bubble sort funktion, förklara för sort() hur den skall agera
 		let compareNumbers = (a, b) =>   {
 			let arr1 = parseFloat(allMovies.ratingCal(a.ratings));
 			let arr2 = parseFloat(allMovies.ratingCal(b.ratings));
@@ -183,15 +185,17 @@ return {
 			}
 			return 0;
 		};
+		// Kontrollerar om sortbyrating är TRUE/FALSE, om TRUE:
 		if (sortByHigh) {
 			sortedArr.sort(compareNumbers).reverse();
 		}
+		// Om false :
 		else {
 			sortedArr.sort(compareNumbers);
 		}
-		return allMovies.SearchResults(sortedArr);  
+		return allMovies.seartchResult(sortedArr);  
 	},
-	 //Funktion som sorterar efter Högst rating.
+	 //Funktion sorterar efter Högst rating.
 	 sortByHighRating: () => {
 	 	allMovies.sortByRating(true);
 	 },
@@ -204,17 +208,17 @@ return {
 		let yearS = document.getElementById("yearSearch").value;
 		yearS= parseFloat(yearS);
 		let sortedYear =[];
-		for (let i = 0; i < allMovies.Getmovies().length; i++) {
-			if(allMovies.Getmovies()[i].year === yearS){
-				sortedYear.push(allMovies.Getmovies()[i]);
+		for (let i = 0; i < allMovies.getMovies().length; i++) {
+			if(allMovies.getMovies()[i].year === yearS){
+				sortedYear.push(allMovies.getMovies()[i]);
 				
 
 			}	
 		}
-		allMovies.SearchResults(sortedYear);
+		allMovies.seartchResult(sortedYear);
 	},
 	//Tar in en array och postar resultatet i html med template litteralls
-	SearchResults: (films) => {
+	seartchResult: (films) => {
 		var test = document.getElementById("test");
 		test.innerHTML="";
 		for (var i = 0; i < films.length; i++) {
@@ -234,23 +238,23 @@ return {
 	genreSort: () => {
 		let genreS = document.getElementById("genreSearch").value;
 		let sortedGenre =[];
-		for (let i = 0; i < allMovies.Getmovies().length; i++) {
-			for (var x = 0; x < allMovies.Getmovies()[i].genres.length; x++) {
-				if(allMovies.Getmovies()[i].genres[x] === genreS){
-					sortedGenre.push(allMovies.Getmovies()[i]);
+		for (let i = 0; i < allMovies.getMovies().length; i++) {
+			for (var x = 0; x < allMovies.getMovies()[i].genres.length; x++) {
+				if(allMovies.getMovies()[i].genres[x] === genreS){
+					sortedGenre.push(allMovies.getMovies()[i]);
 
 				}
 			}	
 		}
 
-		allMovies.SearchResults(sortedGenre);
+		allMovies.seartchResult(sortedGenre);
 	},
 	// Lägger till namn i select elementet
 	editMovieSelect: () => {
 		var editFilm = document.getElementById("selectEle");
 		editFilm.innerHTML="";
-		for (let i = 0; i < allMovies.Getmovies().length; i++) {
-			var anOption = `<option value="${allMovies.Getmovies()[i].title}">${allMovies.Getmovies()[i].title}</option>`;
+		for (let i = 0; i < allMovies.getMovies().length; i++) {
+			var anOption = `<option value="${allMovies.getMovies()[i].title}">${allMovies.getMovies()[i].title}</option>`;
 			editFilm.innerHTML += anOption;
 		}
 	},
@@ -260,9 +264,9 @@ return {
 		let newRating = document.getElementById("newRating");
 		let themovie;
 
-		for (let i = 0; i < allMovies.Getmovies().length; i++) {
-			if (selectedMovie.value === allMovies.Getmovies()[i].title){
-				themovie = allMovies.Getmovies()[i];
+		for (let i = 0; i < allMovies.getMovies().length; i++) {
+			if (selectedMovie.value === allMovies.getMovies()[i].title){
+				themovie = allMovies.getMovies()[i];
 			}
 		}
 		if(newRating.value > 10){
@@ -279,9 +283,9 @@ return {
 		let addGenre = document.getElementById("newgenreInput").value;
 		let themovie;
 
-		for (let i = 0; i < allMovies.Getmovies().length; i++) {
-			if (selectedMovie.value === allMovies.Getmovies()[i].title){
-				themovie = allMovies.Getmovies()[i];
+		for (let i = 0; i < allMovies.getMovies().length; i++) {
+			if (selectedMovie.value === allMovies.getMovies()[i].title){
+				themovie = allMovies.getMovies()[i];
 			}
 
 		}
@@ -300,9 +304,9 @@ return {
 		let removeGenre = document.getElementById("removeGenre").value;
 		let themovie;
 
-		for (let i = 0; i < allMovies.Getmovies().length; i++) {
-			if (selectedMovie.value === allMovies.Getmovies()[i].title){
-				themovie = allMovies.Getmovies()[i];
+		for (let i = 0; i < allMovies.getMovies().length; i++) {
+			if (selectedMovie.value === allMovies.getMovies()[i].title){
+				themovie = allMovies.getMovies()[i];
 			}
 		}
 		for (let x = 0; x < themovie.genres.length; x++) {
@@ -329,14 +333,26 @@ return {
 
 		releaseIn = parseFloat(releaseIn);
 		let newfilm = new allMovies.constructMovie(titleIn, releaseIn, genreIn, parseFloat(ratingIn));
-		allMovies.AddMovie(newfilm);
+		allMovies.addMovie(newfilm);
 		allMovies.postMovies();
 		allMovies.editMovieSelect();
 	},
-};
-})();
+
+	initFunction: () => {
+		document.getElementById("newmoviedatabase").addEventListener("click",allMovies.newMovieFromForm);
+		document.getElementById("ratingSearch").addEventListener("click",allMovies.sortByHighRating);
+		document.getElementById("ratingLow").addEventListener("click", allMovies.sortByLowRating);
+		document.getElementById("showMovies").addEventListener("click",allMovies.postMovies);
+		document.getElementById("newRatingButton").addEventListener("click",allMovies.addRating);
+		document.getElementById("newGenreButton").addEventListener("click",allMovies.addnewGenre);
+		document.getElementById("removeGenreButton").addEventListener("click",allMovies.removeGenre);
+			}
+		};
+
+	})();
 
 
 // init functions
 allMovies.postMovies();
 allMovies.editMovieSelect();
+allMovies.initFunction();
